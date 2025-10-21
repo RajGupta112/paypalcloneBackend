@@ -1,16 +1,11 @@
 spring:
   application:
-    name: user-service
-
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
-
+    name: notification-service
   datasource:
-    url: jdbc:mysql://localhost:3306/paypalcolne_microservice?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/notification_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: "Raj#2024"
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,5 +13,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+  kafka:
+    bootstrap-servers: localhost:9092
+
 server:
-  port: 8080
+  port: 8083

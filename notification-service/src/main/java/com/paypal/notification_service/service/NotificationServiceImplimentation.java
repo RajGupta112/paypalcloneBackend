@@ -22,7 +22,7 @@ public class NotificationServiceImplimentation implements NotificationService {
     }
 
     @Override
-    public List<Notification> getNotificationByUserId(String userId) {
+    public List<Notification> getNotificationByUserId(Long userId) {
         return notificationRepository.findByUserId(userId);
     }
 }

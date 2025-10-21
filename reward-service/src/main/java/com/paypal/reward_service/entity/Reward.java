@@ -1,9 +1,6 @@
-package com.paypal.notification_service.entity;
+package com.paypal.reward_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +8,10 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class Notification {
-
+public class Reward {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +19,11 @@ public class Notification {
 
     private Long userId;
 
-    private String message;
+    private Double points;
 
     private LocalDateTime sentAt;
+
+    @Column(unique = true)
+    private Long transactionId;
+
 }
