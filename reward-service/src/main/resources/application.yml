@@ -1,1 +1,38 @@
-spring.application.name=reward-service
+spring:
+  application:
+    name: reward-service
+
+  # -------------------- MySQL Configuration --------------------
+  datasource:
+    url: jdbc:mysql://localhost:3306/reward_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: "Raj#2024"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # use 'validate' or 'none' in production
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # -------------------- Kafka Configuration --------------------
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: reward-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest          # ensures we consume from beginning if no offsets
+      properties:
+        spring.json.trusted.packages: "com.paypal.reward_service"   # safer than "*"
+        spring.json.value.default.type: com.paypal.reward_service.Transaction
+        spring.json.use.type.headers: false
+    listener:
+      missing-topics-fatal: false
+      concurrency: 1    # ensures single thread per consumer to avoid duplicates
+
+server:
+  port: 8084

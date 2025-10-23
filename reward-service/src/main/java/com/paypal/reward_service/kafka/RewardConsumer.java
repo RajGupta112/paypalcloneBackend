@@ -21,7 +21,7 @@ public class RewardConsumer {
       @KafkaListener(topics = "txn-initiated",groupId = "reward-group")
       public void consumeTransaction(Transaction transaction){
            try{
-                if(rewardRepository.existByTransactionId(transaction.getId())) {
+                if(rewardRepository.existsByTransactionId(transaction.getId())) {
                     System.out.println("Reward already exists for transaction" + transaction.getId());
                 }else {
                     Reward reward= new Reward();

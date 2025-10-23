@@ -8,5 +8,5 @@ import java.util.List;
 public interface RewardRepository extends JpaRepository<Reward,Long> {
     List<Reward> findByUserId(Long userId);
 
-    Boolean existByTransactionId(Long transactionId);
+    Boolean existsByTransactionId(Long transactionId);
 }
