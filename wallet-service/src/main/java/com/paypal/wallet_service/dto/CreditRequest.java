@@ -1,0 +1,16 @@
+package com.paypal.wallet_service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CreditRequest {
+
+    private Long userId;     // wallet owner
+    private Long amount;     // amount to credit
+    private String currency ;
+    
+}
